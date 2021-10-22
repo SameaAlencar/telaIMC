@@ -1,13 +1,28 @@
-package br.senai.sp.jandira;
+package br.senai.sp.jandira.ui;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import br.senai.sp.jandira.model.Conta;
+
 public class TelaCalculadora {
 	
 	public void criarTela() {
+		Font fontTitulo = new Font("Arial", Font.BOLD, 22);
+		Font fontTexto = new Font("Arial", Font.PLAIN, 14);
+		Font fontSubtitulo = new Font("Arial", Font.BOLD, 18);
+		Font fontResultado = new Font("Arial", Font.BOLD, 14);
+		
+		Color verde = new Color(0, 128, 0);
+		Color azul = new Color(0, 0, 180);
+		
 		JFrame tela = new JFrame();
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setSize(400, 800);
@@ -15,38 +30,47 @@ public class TelaCalculadora {
 		tela.setLayout(null); 
 		
 		JLabel lblTitulo = new JLabel();
-		lblTitulo.setText("Cálculo de IMC");
-		lblTitulo.setBounds(20, 10, 100, 40);
+		lblTitulo.setFont(fontTitulo);
+		lblTitulo.setForeground(azul);
+		lblTitulo.setText("Cálculo de IMC ");
+		lblTitulo.setBounds(20, 10, 200, 40);
 		
 		JLabel lblPeso = new JLabel();
+		lblPeso.setFont(fontSubtitulo);
 		lblPeso.setText("Seu peso: ");
-		lblPeso.setBounds(20, 50, 70, 40);
+		lblPeso.setBounds(20, 50, 100, 40);
 		
 		JTextField txtResposta = new JTextField();
-		txtResposta.setBounds(90, 60, 90, 30);
+		txtResposta.setBounds(115, 60, 90, 30);
 		
 		JLabel lblAltura = new JLabel();
+		lblAltura.setFont(fontSubtitulo);
 		lblAltura.setText("Sua altura: ");
-		lblAltura.setBounds(20, 90, 70, 40);
+		lblAltura.setBounds(15, 90, 100, 40);
 		
 		JTextField txtSegundaResp = new JTextField();
-		txtSegundaResp.setBounds(90, 95, 90, 30);
+		txtSegundaResp.setBounds(115, 95, 90, 30);
 		
 		JButton btnCalcular = new JButton();
 		btnCalcular.setText("Calcular");
-		btnCalcular.setBounds(40, 133, 130, 20);
+		btnCalcular.setBounds(40, 133, 200, 20);
 		
 		JLabel lblResultado = new JLabel();
+		lblResultado.setFont(fontSubtitulo);
 		lblResultado.setText("Resultados: ");
-		lblResultado.setBounds(20, 150, 70, 40);
+		lblResultado.setBounds(20, 150, 140, 40);
 		
 		JLabel lblValorIMC = new JLabel();
+		lblValorIMC.setFont(fontSubtitulo);
+		lblValorIMC.setForeground(verde);
 		lblValorIMC.setText("Valor IMC: ");
-		lblValorIMC.setBounds(20, 179, 70, 40);
+		lblValorIMC.setBounds(20, 190, 100, 40);
 		
 		JLabel lblEstado = new JLabel();
+		lblEstado.setFont(fontSubtitulo);
+		lblEstado.setForeground(verde);
 		lblEstado.setText("Estado IMC: ");
-		lblEstado.setBounds(20, 210, 70, 40);
+		lblEstado.setBounds(20, 235, 200, 40);
 		
 		tela.getContentPane().add(lblTitulo);
 		tela.getContentPane().add(lblPeso);
@@ -60,6 +84,24 @@ public class TelaCalculadora {
 		
 		
 		tela.setVisible(true);
+		
+		// Evento de botão
+		
+		btnCalcular.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Conta conta = new Conta();
+				conta.setPeso(txtResposta.getText());
+				conta.setAltura(txtSegundaResp.getText());
+				
+				lblValorIMC.setText(conta.mostrarString());
+			
+				lblEstado.setText(conta.mostrarStatusImc());
+				
+			}
+		});
 		
 		
 	}
