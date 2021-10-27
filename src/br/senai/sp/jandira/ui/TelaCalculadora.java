@@ -62,15 +62,31 @@ public class TelaCalculadora {
 		
 		JLabel lblValorIMC = new JLabel();
 		lblValorIMC.setFont(fontSubtitulo);
-		lblValorIMC.setForeground(verde);
 		lblValorIMC.setText("Valor IMC: ");
 		lblValorIMC.setBounds(20, 190, 100, 40);
 		
+		
+		JLabel lblExibirValorImc = new JLabel();
+		lblExibirValorImc.setBounds(115, 190, 100, 40);
+		lblExibirValorImc.setFont(fontSubtitulo);
+		lblExibirValorImc.setForeground(verde);
+		
+		
 		JLabel lblEstado = new JLabel();
 		lblEstado.setFont(fontSubtitulo);
-		lblEstado.setForeground(verde);
 		lblEstado.setText("Estado IMC: ");
 		lblEstado.setBounds(20, 235, 200, 40);
+		
+		JLabel lblExibirEstado = new JLabel();
+		lblExibirEstado.setBounds(125, 190, 140, 133);
+		lblExibirEstado.setFont(fontSubtitulo);
+		lblExibirEstado.setForeground(verde);
+		
+		
+		
+		
+		
+		
 		
 		tela.getContentPane().add(lblTitulo);
 		tela.getContentPane().add(lblPeso);
@@ -81,6 +97,8 @@ public class TelaCalculadora {
 		tela.getContentPane().add(lblResultado);
 		tela.getContentPane().add(lblValorIMC);
 		tela.getContentPane().add(lblEstado);
+		tela.getContentPane().add(lblExibirValorImc);
+		tela.getContentPane().add(lblExibirEstado);
 		
 		
 		tela.setVisible(true);
@@ -96,9 +114,9 @@ public class TelaCalculadora {
 				conta.setPeso(txtResposta.getText());
 				conta.setAltura(txtSegundaResp.getText());
 				
-				lblValorIMC.setText(conta.mostrarString());
+				lblExibirValorImc.setText(conta.mostrarString());
 			
-				lblEstado.setText(conta.mostrarStatusImc());
+				lblExibirEstado.setText(conta.mostrarStatusImc());
 				
 			}
 		});
